@@ -2,9 +2,7 @@ package tech.salroid.filmy;
 
 import android.app.Application;
 import android.content.Context;
-
 import com.crashlytics.android.Crashlytics;
-
 import io.fabric.sdk.android.Fabric;
 /*
  * Filmy Application for Android

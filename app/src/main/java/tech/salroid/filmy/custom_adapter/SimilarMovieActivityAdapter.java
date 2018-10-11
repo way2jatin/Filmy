@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import java.util.ArrayList;
@@ -77,8 +78,7 @@ public class SimilarMovieActivityAdapter extends RecyclerView.Adapter<SimilarMov
         try {
             Glide.with(context)
                     .load(similar_banner)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .fitCenter()
+                    .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE).fitCenter())
                     .into(holder.poster);
         } catch (Exception e){
         }

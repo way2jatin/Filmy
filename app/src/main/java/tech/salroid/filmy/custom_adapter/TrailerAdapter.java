@@ -14,6 +14,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.bumptech.glide.request.RequestOptions;
 import tech.salroid.filmy.R;
 
 /*
@@ -64,8 +65,7 @@ public class TrailerAdapter extends RecyclerView.Adapter<TrailerAdapter.VH> {
         try {
             Glide.with(context)
                     .load(trailer_thumbnail)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .fitCenter()
+                    .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE).fitCenter())
                     .into(holder.youtube_thumbnail);
         } catch (Exception e) {
         }

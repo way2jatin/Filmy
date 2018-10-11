@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -77,7 +78,8 @@ public class SearchResultAdapter extends RecyclerView.Adapter<SearchResultAdapte
         }
 
 try{
-        Glide.with(fro).load(query_poster).diskCacheStrategy(DiskCacheStrategy.NONE).into(holder.movie_poster);
+        Glide.with(fro).load(query_poster).apply(new RequestOptions()
+                .diskCacheStrategy(DiskCacheStrategy.NONE)).into(holder.movie_poster);
     } catch (Exception e) {
         //Log.d(LOG_TAG, e.getMessage());
     }

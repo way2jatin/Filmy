@@ -15,6 +15,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import com.bumptech.glide.request.RequestOptions;
 import tech.salroid.filmy.R;
 import tech.salroid.filmy.database.FilmContract;
 
@@ -83,7 +84,8 @@ public class MainActivityAdapter extends RecyclerView.Adapter<MainActivityAdapte
         //holder.year.setText(String.valueOf(movie_year));
 
         try {
-            Glide.with(context).load(movie_poster).diskCacheStrategy(DiskCacheStrategy.NONE).into(holder.poster);
+            Glide.with(context).load(movie_poster).apply(new RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE)).into(holder.poster);
         } catch (Exception e) {
             //Log.d(LOG_TAG, e.getMessage());
         }

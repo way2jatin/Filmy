@@ -18,7 +18,6 @@ import android.support.v4.content.Loader;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.graphics.Palette;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,22 +26,18 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.SimpleTarget;
+import com.bumptech.glide.request.transition.Transition;
 import com.google.android.youtube.player.YouTubeStandalonePlayer;
-
+import java.util.HashMap;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.Arrays;
-import java.util.HashMap;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import tech.salroid.filmy.R;
 import tech.salroid.filmy.animations.RevealAnimation;
 import tech.salroid.filmy.customs.BreathingProgress;
@@ -507,12 +502,12 @@ public class MovieDetailsActivity extends AppCompatActivity implements
 
         try {
             Glide.with(context)
-                    .load(banner_profile)
                     .asBitmap()
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .load(banner_profile)
+                    .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
                     .into(new SimpleTarget<Bitmap>() {
                         @Override
-                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        public void onResourceReady(Bitmap resource, Transition<? super Bitmap> glideAnimation) {
 
                             banner.setImageBitmap(resource);
                             Palette.from(resource).generate(new Palette.PaletteAsyncListener() {
@@ -542,10 +537,12 @@ public class MovieDetailsActivity extends AppCompatActivity implements
         try {
 
             Glide.with(context)
-                    .load(img_url).asBitmap().diskCacheStrategy(DiskCacheStrategy.NONE)
+                    .asBitmap()
+                    .load(img_url)
+                    .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
                     .into(new SimpleTarget<Bitmap>() {
                         @Override
-                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                        public void onResourceReady(Bitmap resource, Transition<? super Bitmap> glideAnimation) {
                             youtube_link.setImageBitmap(resource);
                             if (trailer_boolean)
                                 youtube_play_button.setVisibility(View.VISIBLE);
@@ -668,12 +665,12 @@ public class MovieDetailsActivity extends AppCompatActivity implements
             try {
 
                 Glide.with(context)
-                        .load(banner_url)
                         .asBitmap()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .load(banner_url)
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
                         .into(new SimpleTarget<Bitmap>() {
                             @Override
-                            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> glideAnimation) {
 
                                 banner.setImageBitmap(resource);
                                 Palette.from(resource).generate(new Palette.PaletteAsyncListener() {
@@ -713,12 +710,12 @@ public class MovieDetailsActivity extends AppCompatActivity implements
             try {
 
                 Glide.with(context)
-                        .load(thumbNail)
                         .asBitmap()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .load(thumbNail)
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
                         .into(new SimpleTarget<Bitmap>() {
                             @Override
-                            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> glideAnimation) {
                                 youtube_link.setImageBitmap(resource);
                                 if (trailer_boolean)
                                     youtube_play_button.setVisibility(View.VISIBLE);
@@ -781,12 +778,12 @@ public class MovieDetailsActivity extends AppCompatActivity implements
 
             try {
                 Glide.with(context)
-                        .load(banner_url)
                         .asBitmap()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .load(banner_url)
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
                         .into(new SimpleTarget<Bitmap>() {
                             @Override
-                            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> glideAnimation) {
 
                                 banner.setImageBitmap(resource);
 
@@ -818,12 +815,12 @@ public class MovieDetailsActivity extends AppCompatActivity implements
             try {
 
                 Glide.with(context)
-                        .load(trailer)
                         .asBitmap()
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
+                        .load(trailer)
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE))
                         .into(new SimpleTarget<Bitmap>() {
                             @Override
-                            public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                            public void onResourceReady(Bitmap resource, Transition<? super Bitmap> glideAnimation) {
                                 youtube_link.setImageBitmap(resource);
                                 if (trailer_boolean)
                                     youtube_play_button.setVisibility(View.VISIBLE);

@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 
+import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -69,7 +70,7 @@ public class WatchlistAdapter extends RecyclerView.Adapter<WatchlistAdapter.Dh> 
         holder.movie_name.setText(fav_title);
 
         try {
-            Glide.with(fro).load(fav_poster).diskCacheStrategy(DiskCacheStrategy.NONE).into(holder.movie_poster);
+            Glide.with(fro).load(fav_poster).apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE)).into(holder.movie_poster);
         } catch (Exception e) {
             //Log.d(LOG_TAG, e.getMessage());
         }

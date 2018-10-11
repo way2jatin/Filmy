@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import java.util.ArrayList;
 import java.util.List;
@@ -70,8 +71,7 @@ public class CrewAdapter extends RecyclerView.Adapter<CrewAdapter.Ho> {
         try {
             Glide.with(context)
                     .load(ct_profile)
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)
-                    .fitCenter()
+                    .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE).fitCenter())
                     .into(holder.crew_poster);
         } catch (Exception e){
         }

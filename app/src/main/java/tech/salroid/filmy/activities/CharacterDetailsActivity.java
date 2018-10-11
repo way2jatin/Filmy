@@ -25,6 +25,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.mikhaellopez.circularimageview.CircularImageView;
 
 import org.json.JSONException;
@@ -304,8 +305,7 @@ public class CharacterDetailsActivity extends AppCompatActivity implements Chara
 
                 Glide.with(co)
                         .load(char_face)
-                        .diskCacheStrategy(DiskCacheStrategy.NONE)
-                        .fitCenter().into(character_small);
+                        .apply(new RequestOptions().diskCacheStrategy(DiskCacheStrategy.NONE).fitCenter()).into(character_small);
 
             } catch (Exception e) {
                 //Log.d(LOG_TAG, e.getMessage());
@@ -364,6 +364,6 @@ public class CharacterDetailsActivity extends AppCompatActivity implements Chara
     @Override
     protected void onStop() {
         super.onStop();
-        Glide.clear(character_small);
+        Glide.with(co).clear(character_small);
     }
 }

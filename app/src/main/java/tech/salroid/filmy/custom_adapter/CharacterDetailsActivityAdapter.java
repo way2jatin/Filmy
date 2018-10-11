@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import java.util.ArrayList;
 import java.util.List;
@@ -74,7 +75,8 @@ public class CharacterDetailsActivityAdapter extends RecyclerView.Adapter<Charac
         holder.mov_char.setText(m_desc);
 
         try {
-            Glide.with(con).load(m_profile).diskCacheStrategy(DiskCacheStrategy.NONE).fitCenter().into(holder.mov_img);
+            Glide.with(con).load(m_profile).apply(new RequestOptions()
+                    .diskCacheStrategy(DiskCacheStrategy.NONE).fitCenter()).into(holder.mov_img);
         } catch (Exception e) {
             //Log.d(LOG_TAG, e.getMessage());
         }
