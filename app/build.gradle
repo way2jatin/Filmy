@@ -18,8 +18,6 @@ repositories {
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '28.0.2'
-
     defaultConfig {
         applicationId "tech.salroid.filmy"
         minSdkVersion 18
@@ -27,6 +25,7 @@ android {
         versionCode 16
         versionName "2.1.2"
         resConfigs "en" , "de" , "es-rES" , "hi-rIN" , "nl-rNL"
+        multiDexEnabled true
 
     }
     buildTypes {
@@ -41,7 +40,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             buildConfigField("String", "TMDB_API_KEY", "\"" + getTMDBApiKey() +"\"")
             buildConfigField("String", "OMDB_API_KEY", "\"" + getOMDBApiKey() +"\"")
-            minifyEnabled true
+//            minifyEnabled true
         }
     }
 }
@@ -60,8 +59,9 @@ static def getOMDBApiKey(){
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:27.0.1'
-    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.android.support:multidex:1.0.1'
+    implementation 'com.android.support:appcompat-v7:26.1.0'
+    implementation 'com.android.support:design:27.1.0'
     implementation 'com.android.support:customtabs:26.1.0'
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
@@ -82,4 +82,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-appindexing:11.4.2'
     implementation files('libs/YouTubeAndroidPlayerApi.jar')
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
 }
+
+apply plugin: 'com.google.gms.google-services'

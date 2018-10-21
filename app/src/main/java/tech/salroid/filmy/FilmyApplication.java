@@ -41,4 +41,10 @@ public class FilmyApplication extends Application {
 
         instance = this;
     }
+
+    @Override
+    protected void attachBaseContext(final Context base) {
+        super.attachBaseContext(base);
+
+    }
 }
